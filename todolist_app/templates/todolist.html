@@ -1,0 +1,53 @@
+{% extends 'homepage.html' %}
+{% block  content %}
+</br>
+<form method="POST">
+{% csrf_token %}
+  <div class="mb-3">
+    
+    <input type="text" class="form-control"  name="task" placeholder="enter task">
+   
+  </div>
+  <button type="submit" class="btn btn-primary">Add Task</button>
+</form>
+</br>
+<table class="table table-dark table-hover">
+  <thead>
+    <tr >
+	  <th scope="col">Task Id</th>
+      <th scope="col">Taskname</th>
+      <th scope="col">Taskstatus</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {%for obj in content %}
+  {% if obj.task_status%}
+    <tr class ="table-active">
+      <td>{{obj.id}}</td>
+      <td>{{obj.Taskname}}</td>
+	  <td>Completed</td>
+      <td>edit</td>
+      <td>delete</td>
+    </tr>
+   {%else%}
+   <tr>
+      <td>{{obj.id}}</td>
+      <td>{{obj.Taskname}}</td>
+	  <td>Not Completed</td>
+      <td>edit</td>
+      <td>delete</td>
+    </tr>
+	{%endif%}
+   {%endfor%}
+  </tbody>
+</table>
+
+
+
+
+
+{% endblock %}
+
+
